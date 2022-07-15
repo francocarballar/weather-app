@@ -34,12 +34,11 @@ function App () {
   const today = `${day}, ${date} ${month}`
   const api_Key = 'a46af953702c497ab6022616221507'
   const request_URL = 'http://api.weatherapi.com/v1/'
-  const [stateCity, setCity] = useState('')
+  const IP = `${request_URL}ip.json?key=${api_Key}&q=auto:ip`
+  const [city, setCity] = useState('')
   const yourCity = async () => {
     try {
-      const response = await fetch(
-        `${request_URL}ip.json?key=${api_Key}&q=auto:ip`
-      )
+      const response = await fetch(IP)
       const data = await response.json()
       if (response.status === 200) {
         setCity(data.city)
@@ -49,17 +48,16 @@ function App () {
     }
   }
   yourCity()
-  const city = stateCity
   const URL = `${request_URL}current.json?key=${api_Key}&q=${city}`
-  const [stateTemperature, setTemperature] = useState('')
-  const [stateConditionIcon, setConditionIcon] = useState('')
-  const [stateConditionText, setConditionText] = useState('')
-  const [stateLocation, setLocation] = useState('')
-  const [stateHumidity, setHumidity] = useState('')
-  const [stateWindStatus, setWindStatus] = useState('')
-  const [statePressure, setPressure] = useState('')
-  const [stateVisibility, setVisibility] = useState('')
-  const location = async () => {
+  const [temperature, setTemperature] = useState('')
+  const [conditionIcon, setConditionIcon] = useState('')
+  const [conditionText, setConditionText] = useState('')
+  const [location, setLocation] = useState('')
+  const [humidity, setHumidity] = useState('')
+  const [windStatus, setWindStatus] = useState('')
+  const [pressure, setPressure] = useState('')
+  const [visibility, setVisibility] = useState('')
+  const api = async () => {
     try {
       const response = await fetch(URL)
       const data = await response.json()
@@ -85,7 +83,7 @@ function App () {
       console.error(error)
     }
   }
-  location()
+  api()
   return (
     <main className='main'>
       <section className='section__main'>
@@ -93,20 +91,24 @@ function App () {
           <button type='button' className='search-for-places'>
             Search for places
           </button>
-          <button type='button' className='my-location'>
+          <button
+            type='button'
+            className='my-location'
+            onClick={() => setCity(IP)}
+          >
             <span className='material-symbols-outlined'>my_location</span>
           </button>
         </nav>
         <div className='bg-image'>
           <figure>
-            <img src={stateConditionIcon}></img>
+            <img src={conditionIcon}></img>
           </figure>
         </div>
         <h1 className='temperature'>
-          {stateTemperature}
+          {temperature}
           <span>°C</span>
         </h1>
-        <h2 className='weather-conditions'>{stateConditionText}</h2>
+        <h2 className='weather-conditions'>{conditionText}</h2>
         <div className='date-info'>
           <p>{today}</p>
         </div>
@@ -119,7 +121,7 @@ function App () {
           >
             <path d='M12 0c-4.198 0-8 3.403-8 7.602 0 4.198 3.469 9.21 8 16.398 4.531-7.188 8-12.2 8-16.398 0-4.199-3.801-7.602-8-7.602zm0 11c-1.657 0-3-1.343-3-3s1.343-3 3-3 3 1.343 3 3-1.343 3-3 3z' />
           </svg>
-          <p>{stateLocation}</p>
+          <p>{location}</p>
         </div>
       </section>
       <section className='section__secondary'>
@@ -178,20 +180,16 @@ function App () {
         <div className='container-features'>
           <CardFeatures
             title='Wind Status'
-            data={stateWindStatus}
+            data={windStatus}
             measurement='mph'
           />
-          <CardFeatures title='Humidity' data={stateHumidity} measurement='%' />
+          <CardFeatures title='Humidity' data={humidity} measurement='%' />
           <CardFeatures
             title='Visibility'
-            data={stateVisibility}
+            data={visibility}
             measurement='miles'
           />
-          <CardFeatures
-            title='Air Pressure'
-            data={statePressure}
-            measurement='mb'
-          />
+          <CardFeatures title='Air Pressure' data={pressure} measurement='mb' />
         </div>
       </section>
     </main>
