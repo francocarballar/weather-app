@@ -183,10 +183,6 @@
     padding: 0 35px;
   }
 
-  .container-days {
-    grid-template-columns: 20% 20% 20% 20% 20%;
-  }
-
   .container-features {
     display: grid;
     grid-template-columns: 50% 50%;

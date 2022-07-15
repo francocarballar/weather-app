@@ -32,7 +32,22 @@ function App () {
   const day = days[f.getDay()]
   const date = f.getDate()
   const month = months[f.getMonth()]
+  const [stateTomorrow, setTomorrow] = useState(days[f.getDay() + 1])
+  const [stateDayAfterTomorrow, setDayAfterTomorrow] = useState(
+    days[f.getDay() + 2]
+  )
+  const lastDay = () => {
+    if (stateTomorrow === undefined) {
+      setTomorrow(days[0])
+    }
+    if (stateDayAfterTomorrow === undefined) {
+      setDayAfterTomorrow(days[0])
+    }
+  }
+  lastDay()
   const today = `${day}, ${date} ${month}`
+  const tomorrow = `${stateTomorrow}, ${date + 1} ${month}`
+  const dayAfterTomorrow = `${stateDayAfterTomorrow}, ${date + 2} ${month}`
   const api_Key = 'a46af953702c497ab6022616221507'
   const request_URL = 'http://api.weatherapi.com/v1/'
   const IP = `${request_URL}ip.json?key=${api_Key}&q=auto:ip`
@@ -100,6 +115,11 @@ function App () {
           case 'Mist':
             setConditionIcon('/media/Mist.png')
             break
+          case 'Patchy rain possible':
+            setConditionIcon('/media/LightRain.png')
+            break
+            dafault: setConditionIcon('/media/Clear.png')
+            break
         }
       }
     } catch (error) {
@@ -107,6 +127,145 @@ function App () {
     }
   }
   api()
+  const [minTempDay1, setMinTempDay1] = useState('')
+  const [maxTempDay1, setMaxTempDay1] = useState('')
+  const [conditionText1, setConditionText1] = useState('')
+  const [conditionIcon1, setConditionIcon1] = useState('')
+  const [minTempDay2, setMinTempDay2] = useState('')
+  const [maxTempDay2, setMaxTempDay2] = useState('')
+  const [conditionText2, setConditionText2] = useState('')
+  const [conditionIcon2, setConditionIcon2] = useState('')
+  const [minTempDay3, setMinTempDay3] = useState('')
+  const [maxTempDay3, setMaxTempDay3] = useState('')
+  const [conditionText3, setConditionText3] = useState('')
+  const [conditionIcon3, setConditionIcon3] = useState('')
+  const forecast = async () => {
+    try {
+      const response = await fetch(
+        `${request_URL}forecast.json?key=${api_Key}&q=${city}&days=3`
+      )
+      const data = await response.json()
+      if (response.status === 200) {
+        const day1 = data.forecast.forecastday[0]
+        const day2 = data.forecast.forecastday[1]
+        const day3 = data.forecast.forecastday[2]
+        setMaxTempDay1(day1.day.maxtemp_c)
+        setMinTempDay1(day1.day.mintemp_c)
+        setConditionText1(day1.day.condition.text)
+        setMaxTempDay2(day2.day.maxtemp_c)
+        setMinTempDay2(day2.day.mintemp_c)
+        setConditionText2(day2.day.condition.text)
+        setMaxTempDay3(day3.day.maxtemp_c)
+        setMinTempDay3(day3.day.mintemp_c)
+        setConditionText3(day3.day.condition.text)
+        switch (conditionText1) {
+          case 'Sunny':
+            setConditionIcon1('/media/Clear.png')
+            break
+          case 'Light rain':
+            setConditionIcon1('/media/LightRain.png')
+            break
+          case 'Light drizzle':
+            setConditionIcon1('/media/LightRain.png')
+            break
+          case 'Partly cloudy':
+            setConditionIcon1('/media/LightCloud.png')
+            break
+          case 'Overcast':
+            setConditionIcon1('/media/HeavyCloud.png')
+            break
+          case 'Heavy snow':
+            setConditionIcon1('/media/Snow.png')
+            break
+          case 'Cloudy':
+            setConditionIcon1('/media/HeavyCloud.png')
+            break
+          case 'Moderate rain':
+            setConditionIcon1('/media/LightRain.png')
+            break
+          case 'Mist':
+            setConditionIcon1('/media/Mist.png')
+            break
+          case 'Patchy rain possible':
+            setConditionIcon1('/media/LightRain.png')
+            break
+            dafault: setConditionIcon1('/media/Clear.png')
+            break
+        }
+        switch (conditionText2) {
+          case 'Sunny':
+            setConditionIcon2('/media/Clear.png')
+            break
+          case 'Light rain':
+            setConditionIcon2('/media/LightRain.png')
+            break
+          case 'Light drizzle':
+            setConditionIcon2('/media/LightRain.png')
+            break
+          case 'Partly cloudy':
+            setConditionIcon2('/media/LightCloud.png')
+            break
+          case 'Overcast':
+            setConditionIcon2('/media/HeavyCloud.png')
+            break
+          case 'Heavy snow':
+            setConditionIcon2('/media/Snow.png')
+            break
+          case 'Cloudy':
+            setConditionIcon2('/media/HeavyCloud.png')
+            break
+          case 'Moderate rain':
+            setConditionIcon2('/media/LightRain.png')
+            break
+          case 'Mist':
+            setConditionIcon2('/media/Mist.png')
+            break
+          case 'Patchy rain possible':
+            setConditionIcon2('/media/LightRain.png')
+            break
+            dafault: setConditionIcon2('/media/Clear.png')
+            break
+        }
+        switch (conditionText3) {
+          case 'Sunny':
+            setConditionIcon3('/media/Clear.png')
+            break
+          case 'Light rain':
+            setConditionIcon3('/media/LightRain.png')
+            break
+          case 'Light drizzle':
+            setConditionIcon3('/media/LightRain.png')
+            break
+          case 'Partly cloudy':
+            setConditionIcon3('/media/LightCloud.png')
+            break
+          case 'Overcast':
+            setConditionIcon3('/media/HeavyCloud.png')
+            break
+          case 'Heavy snow':
+            setConditionIcon3('/media/Snow.png')
+            break
+          case 'Cloudy':
+            setConditionIcon3('/media/HeavyCloud.png')
+            break
+          case 'Moderate rain':
+            setConditionIcon3('/media/LightRain.png')
+            break
+          case 'Mist':
+            setConditionIcon3('/media/Mist.png')
+            break
+          case 'Patchy rain possible':
+            setConditionIcon3('/media/LightRain.png')
+            break
+            dafault: setConditionIcon3('/media/Clear.png')
+            break
+        }
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  forecast()
   const [navBar, setNavBar] = useState(false)
   const clickSearchPlaces = () => {
     setNavBar(true)
@@ -163,39 +322,25 @@ function App () {
       <section className='section__secondary'>
         <div className='container-days'>
           <CardDays
-            date='Tomorrow'
-            weather_image='/media/Sleet.png'
-            alt__weather_image='sleet'
-            max_temperature='16°c'
-            min_temperature='11°C'
+            date={today}
+            weather_image={conditionIcon1}
+            alt__weather_image={conditionText1}
+            max_temperature={maxTempDay1}
+            min_temperature={minTempDay1}
           />
           <CardDays
-            date='Tomorrow'
-            weather_image='/media/Sleet.png'
-            alt__weather_image='sleet'
-            max_temperature='16°c'
-            min_temperature='11°C'
+            date={tomorrow}
+            weather_image={conditionIcon2}
+            alt__weather_image={conditionText2}
+            max_temperature={maxTempDay2}
+            min_temperature={minTempDay2}
           />
           <CardDays
-            date='Tomorrow'
-            weather_image='/media/Sleet.png'
-            alt__weather_image='sleet'
-            max_temperature='16°c'
-            min_temperature='11°C'
-          />
-          <CardDays
-            date='Tomorrow'
-            weather_image='/media/Sleet.png'
-            alt__weather_image='sleet'
-            max_temperature='16°c'
-            min_temperature='11°C'
-          />
-          <CardDays
-            date='Tomorrow'
-            weather_image='/media/Sleet.png'
-            alt__weather_image='sleet'
-            max_temperature='16°c'
-            min_temperature='11°C'
+            date={dayAfterTomorrow}
+            weather_image={conditionIcon3}
+            alt__weather_image={conditionText3}
+            max_temperature={maxTempDay3}
+            min_temperature={minTempDay3}
           />
         </div>
         <h3>Today's Hightlights</h3>
