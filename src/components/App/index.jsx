@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './App.css'
+import { NavBar } from '../NavBar'
 import { CardDays } from '../CardDays'
 import { CardFeatures } from '../CardFeatures'
 
@@ -47,7 +48,9 @@ function App () {
       console.error(error)
     }
   }
-  yourCity()
+  useEffect(() => {
+    yourCity()
+  }, [])
   const URL = `${request_URL}current.json?key=${api_Key}&q=${city}`
   const [temperature, setTemperature] = useState('')
   const [conditionIcon, setConditionIcon] = useState('')
@@ -78,24 +81,40 @@ function App () {
         if (data.current.condition.text === 'Partly cloudy') {
           setConditionIcon('/media/LightCloud.png')
         }
+        if (data.current.condition.text === 'Overcast') {
+          setConditionIcon('/media/HeavyCloud.png')
+        }
       }
     } catch (error) {
       console.error(error)
     }
   }
   api()
+  const [navBar, setNavBar] = useState(false)
+  const clickSearchPlaces = () => {
+    setNavBar(true)
+    document.body.style.overflow = 'hidden'
+  }
   return (
     <main className='main'>
+      {navBar && (
+        <NavBar
+          navBar={navBar}
+          setNavBar={setNavBar}
+          city={city}
+          setCity={setCity}
+        />
+      )}
       <section className='section__main'>
         <nav className='nav'>
-          <button type='button' className='search-for-places'>
-            Search for places
-          </button>
           <button
             type='button'
-            className='my-location'
-            onClick={() => setCity(IP)}
+            className='search-for-places'
+            onClick={clickSearchPlaces}
           >
+            Search for places
+          </button>
+          <button type='button' className='my-location' onClick={yourCity}>
             <span className='material-symbols-outlined'>my_location</span>
           </button>
         </nav>
