@@ -49,7 +49,7 @@ function App () {
   const tomorrow = `${stateTomorrow}, ${date + 1} ${month}`
   const dayAfterTomorrow = `${stateDayAfterTomorrow}, ${date + 2} ${month}`
   const api_Key = 'a46af953702c497ab6022616221507'
-  const request_URL = 'http://api.weatherapi.com/v1/'
+  const request_URL = 'https://api.weatherapi.com/v1/'
   const IP = `${request_URL}ip.json?key=${api_Key}&q=auto:ip`
   const [city, setCity] = useState('')
   const yourCity = async () => {

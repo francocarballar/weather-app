@@ -11,7 +11,7 @@ function NavBar ({ navBar, setNavBar, city, setCity }) {
     setSearch(e.target.value)
   }
   const api_Key = 'a46af953702c497ab6022616221507'
-  const request_URL = 'http://api.weatherapi.com/v1/'
+  const request_URL = 'https://api.weatherapi.com/v1/'
   const search_URL = `${request_URL}search.json?key=${api_Key}&q=${stateSearch}`
   const containerSearch = document.querySelector('.container_search')
   const ul = document.createElement('ul')
