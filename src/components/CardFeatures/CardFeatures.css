@@ -1,0 +1,20 @@
+.card_features {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+    width: 100%;
+    height: 200px;
+    color: var(--text-color);
+    font-size: 1.6rem;
+    background-color: var(--secondary-color);
+}
+
+.card_features .data {
+    font-size: 8rem;
+}
+
+.card_features .data span {
+    font-size: 3rem;
+}

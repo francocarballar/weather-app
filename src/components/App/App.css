@@ -1,0 +1,147 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.section__main {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  height: 810px;
+  background-color: var(--secondary-color);
+}
+
+.main .nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  width: 100%;
+}
+
+.main .nav button {
+  padding: 10px;
+  color: var(--text-color);
+  font-size: 1.6rem;
+  background-color: #6E707A;
+  border: none;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+}
+
+.main .nav .my-location {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+
+.material-symbols-outlined {
+  color: var(--text-color);
+}
+
+.bg-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  height: 300px;
+}
+
+.bg-image::after {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 300px;
+  content: "";
+  opacity: 0.2;
+  background-image: url('/public/media/Cloud-background.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.bg-image img {
+  width: 150px;
+  opacity: 1;
+}
+
+.temperature {
+  color: var(--text-color);
+  font-size: 14rem;
+  font-weight: 400;
+}
+
+.temperature span {
+  color: var(--secondary__text-color);
+  font-size: 5rem;
+  font-weight: 400;
+}
+
+.weather-conditions {
+  margin: 15px 0;
+  color: var(--secondary__text-color);
+  font-size: 3rem;
+}
+
+.date-info {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 25px;
+  min-width: 165px;
+  font-size: 2rem;
+  font-weight: 500;
+  color: var(--secondary__text-color);
+}
+
+.location {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 35px;
+}
+
+.location p {
+  color: var(--secondary__text-color);
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.location svg {
+  margin-right: 10px;
+  fill: var(--secondary__text-color);
+}
+
+.section__secondary {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 25px;
+  width: 100%;
+  height: auto;
+  background-color: var(--primary-color);
+}
+
+.container-days {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  margin: 15px 0;
+}
+
+.section__secondary h3 {
+  margin-bottom: 25px;
+  color: var(--text-color);
+  font-size: 2.2rem;
+}
+
+.container-features {
+  width: 100%;
+}

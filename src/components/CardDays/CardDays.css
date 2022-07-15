@@ -1,0 +1,28 @@
+.card_days {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    width: 120px;
+    height: 177px;
+    color: var(--text-color);
+    font-size: 1.6rem;
+    background-color: var(--secondary-color);
+}
+
+.card_days img {
+    margin: 10px 0 20px 0;
+    width: 57px;
+}
+
+.card_days div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.card_days .min-temperature {
+    margin-left: 10px;
+    color: var(--secondary__text-color);
+}
