@@ -17,6 +17,7 @@
     top: 0;
     right: 0;
     margin: 15px 25px;
+    cursor: pointer;
 }
 
 .navBar label {
@@ -47,6 +48,7 @@
     font-size: 1.6rem;
     background-color: #3C47E9;
     border: none;
+    cursor: pointer;
 }
 
 .navBar .container_search {
@@ -69,4 +71,10 @@
 
 .navBar .container_search li:hover {
     background-color: rgba(16, 14, 29, 30%)
+}
+
+@media(min-width: 1024px) {
+    .navBar {
+        width: 25%;
+    }
 }

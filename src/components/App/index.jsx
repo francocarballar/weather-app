@@ -72,17 +72,34 @@ function App () {
         setPressure(data.current.pressure_mb)
         setVisibility(data.current.vis_miles)
         setConditionText(data.current.condition.text)
-        if (data.current.condition.text === 'Sunny') {
-          setConditionIcon('/media/Clear.png')
-        }
-        if (data.current.condition.text === 'Light rain') {
-          setConditionIcon('/media/LightRain.png')
-        }
-        if (data.current.condition.text === 'Partly cloudy') {
-          setConditionIcon('/media/LightCloud.png')
-        }
-        if (data.current.condition.text === 'Overcast') {
-          setConditionIcon('/media/HeavyCloud.png')
+        switch (data.current.condition.text) {
+          case 'Sunny':
+            setConditionIcon('/media/Clear.png')
+            break
+          case 'Light rain':
+            setConditionIcon('/media/LightRain.png')
+            break
+          case 'Light drizzle':
+            setConditionIcon('/media/LightRain.png')
+            break
+          case 'Partly cloudy':
+            setConditionIcon('/media/LightCloud.png')
+            break
+          case 'Overcast':
+            setConditionIcon('/media/HeavyCloud.png')
+            break
+          case 'Heavy snow':
+            setConditionIcon('/media/Snow.png')
+            break
+          case 'Cloudy':
+            setConditionIcon('/media/HeavyCloud.png')
+            break
+          case 'Moderate rain':
+            setConditionIcon('/media/LightRain.png')
+            break
+          case 'Mist':
+            setConditionIcon('/media/Mist.png')
+            break
         }
       }
     } catch (error) {
@@ -145,20 +162,6 @@ function App () {
       </section>
       <section className='section__secondary'>
         <div className='container-days'>
-          <CardDays
-            date='Tomorrow'
-            weather_image='/media/Sleet.png'
-            alt__weather_image='sleet'
-            max_temperature='16°c'
-            min_temperature='11°C'
-          />
-          <CardDays
-            date='Tomorrow'
-            weather_image='/media/Sleet.png'
-            alt__weather_image='sleet'
-            max_temperature='16°c'
-            min_temperature='11°C'
-          />
           <CardDays
             date='Tomorrow'
             weather_image='/media/Sleet.png'
