@@ -88,6 +88,9 @@ function App () {
         setVisibility(data.current.vis_miles)
         setConditionText(data.current.condition.text)
         switch (data.current.condition.text) {
+          case 'Clear':
+            setConditionIcon('/media/Clear.png')
+            break
           case 'Sunny':
             setConditionIcon('/media/Clear.png')
             break
@@ -159,6 +162,9 @@ function App () {
         setMinTempDay3(day3.day.mintemp_c)
         setConditionText3(day3.day.condition.text)
         switch (conditionText1) {
+          case 'Clear':
+            setConditionIcon1('/media/Clear.png')
+            break
           case 'Sunny':
             setConditionIcon1('/media/Clear.png')
             break
@@ -193,6 +199,9 @@ function App () {
             break
         }
         switch (conditionText2) {
+          case 'Clear':
+            setConditionIcon2('/media/Clear.png')
+            break
           case 'Sunny':
             setConditionIcon2('/media/Clear.png')
             break
@@ -227,6 +236,9 @@ function App () {
             break
         }
         switch (conditionText3) {
+          case 'Clear':
+            setConditionIcon3('/media/Clear.png')
+            break
           case 'Sunny':
             setConditionIcon3('/media/Clear.png')
             break
