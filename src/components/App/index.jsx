@@ -303,7 +303,7 @@ function App () {
             Search for places
           </button>
           <button type='button' className='my-location' onClick={yourCity}>
-            <span className='material-symbols-outlined'></span>
+            <span className='material-symbols-outlined'>my_location</span>
           </button>
         </nav>
         <div className='bg-image'>
