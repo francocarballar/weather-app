@@ -28,7 +28,7 @@
   padding: 10px;
   color: var(--text-color);
   font-size: 1.6rem;
-  background-color: #6E707A;
+  background-color: #6e707a;
   border: none;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   cursor: pointer;
@@ -59,7 +59,7 @@
   top: 0;
   width: 100%;
   height: 300px;
-  content: "";
+  content: '';
   opacity: 0.2;
   background-image: url('/public/media/Cloud-background.png');
   background-position: center;
@@ -150,7 +150,7 @@
   width: 100%;
 }
 
-@media(min-width: 768px) {
+@media (min-width: 768px) {
   .bg-image {
     height: 500px;
   }
@@ -164,11 +164,11 @@
   }
 }
 
-@media(min-width: 1024px) {
+@media (min-width: 1024px) {
   .main {
     display: grid;
     grid-template-columns: 25% 75%;
-    max-height: 100vh;
+    min-height: 100vh;
   }
 
   .bg-image {
