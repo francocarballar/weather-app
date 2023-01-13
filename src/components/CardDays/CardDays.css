@@ -4,10 +4,11 @@
     justify-content: center;
     align-items: center;
     text-align: center;
+    gap: 5px;
     margin: 10px;
-    padding: 25px;
+    padding: 10px 25px;
     width: 150px;
-    height: 177px;
+    min-height: 178px;
     color: var(--text-color);
     font-size: 1.6rem;
     background-color: var(--secondary-color);

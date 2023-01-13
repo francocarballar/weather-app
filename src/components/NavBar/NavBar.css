@@ -10,6 +10,7 @@
     height: 100vh;
     background-color: var(--secondary-color);
     z-index: 300;
+    color: var(--text-color);
 }
 
 .navBar .close {

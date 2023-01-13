@@ -1,0 +1,139 @@
+.section__main {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+  height: 100%;
+  background-color: var(--secondary-color);
+}
+
+.main .nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  width: 100%;
+}
+
+.main .nav button {
+  padding: 10px;
+  color: var(--text-color);
+  font-size: 1.6rem;
+  background-color: #6e707a;
+  border: none;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+}
+
+.main .nav .my-location {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+
+.main .nav .my-location svg {
+  width: 2.4rem;
+  height: 2.4rem;
+}
+
+.bg-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  height: 300px;
+}
+
+.bg-image::after {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 300px;
+  content: '';
+  opacity: 0.2;
+  background-image: url('/public/media/Cloud-background.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.bg-image img {
+  width: 150px;
+  opacity: 1;
+}
+
+.temperature {
+  color: var(--text-color);
+  font-size: 14rem;
+  font-weight: 400;
+  text-align: center;
+}
+
+.temperature span {
+  color: var(--secondary__text-color);
+  font-size: 5rem;
+  font-weight: 400;
+}
+
+.weather-conditions {
+  margin: 15px 0;
+  padding: 0 25px;
+  color: var(--secondary__text-color);
+  font-size: 3rem;
+  text-align: center;
+}
+
+.date-info {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 25px;
+  min-width: 165px;
+  font-size: 2rem;
+  font-weight: 500;
+  color: var(--secondary__text-color);
+}
+
+.location {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 35px;
+}
+
+.location p {
+  color: var(--secondary__text-color);
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.location svg {
+  margin-right: 10px;
+  fill: var(--secondary__text-color);
+}
+
+@media (min-width: 768px) {
+  .bg-image {
+    height: 400px;
+  }
+
+  .bg-image::after {
+    height: 400px;
+    background-size: contain;
+  }
+}
+
+@media (min-width: 1024px) {
+  .bg-image {
+    height: 250px;
+  }
+
+  .bg-image::after {
+    height: 250px;
+    background-size: cover;
+  }
+}

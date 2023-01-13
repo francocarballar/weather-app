@@ -1,0 +1,30 @@
+.main .modal-error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 35px;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, .7);
+  z-index: 5;
+}
+
+.main .modal-error div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+  padding: 100px 70px;
+  width: auto;
+  max-width: 60vw;
+  text-align: center;
+  font-size: 3rem;
+  color: var(--text-color);
+  background-color: var(--secondary-color);
+  border-radius: 25px;
+  z-index: 10;
+}

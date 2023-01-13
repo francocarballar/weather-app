@@ -1,21 +1,29 @@
 import React from 'react'
 import './CardDays.css'
+import { Skeleton, SkeletonCircle } from '@chakra-ui/skeleton'
 
 function CardDays ({
   date,
-  min_temperature,
-  max_temperature,
-  weather_image,
-  alt__weather_image
+  minTemperature,
+  maxTemperature,
+  weatherImage,
+  altWeatherImage,
+  loading
 }) {
   return (
     <div className='card_days'>
       <p>{date}</p>
-      <img src={weather_image} alt={alt__weather_image}></img>
-      <div>
-        <p>{max_temperature}</p>
-        <p className='min-temperature'>{min_temperature}</p>
-      </div>
+      {loading && <SkeletonCircle width='50px' height='50px' />}
+      {!loading && (
+        <img src={weatherImage} alt={altWeatherImage} width={57} height={66} />
+      )}
+      {loading && <Skeleton width='75px' height='20px' />}
+      {!loading && (
+        <div>
+          <p>{maxTemperature}</p>
+          <p className='min-temperature'>{minTemperature}</p>
+        </div>
+      )}
     </div>
   )
 }
