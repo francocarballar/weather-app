@@ -31,7 +31,6 @@ function useAPI () {
     await fetch(url)
       .then(res => res.json())
       .then(data => {
-        console.log('Llamada a la API: ', data)
         setTemperature(data.current.temp_c)
         setLocation(data.location.name)
         setHumidity(data.current.humidity)

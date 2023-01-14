@@ -1,4 +1,4 @@
-import { useEffect, useContext } from 'react'
+import { useEffect, useContext, useCallback } from 'react'
 import { Context } from '../context'
 
 function configAPI () {
@@ -11,10 +11,11 @@ function configAPI () {
     setSearchUrl,
     setUrlDays,
     setErrorGeolocation,
+    loading,
     setLoading
   } = useContext(Context)
 
-  const permissionStatus = () => {
+  const permissionStatus = useCallback(() => {
     navigator.permissions
       .query({ name: 'geolocation' })
       .then(permissionStatus => {
@@ -31,7 +32,7 @@ function configAPI () {
           }
         }
       })
-  }
+  }, [loading])
 
   const API_KEY = process.env.REACT_APP_API_KEY
   const REQUEST_URL = 'https://api.weatherapi.com/v1/'
@@ -69,13 +70,11 @@ function configAPI () {
         )
       }
     }
-  })
+  }, [])
   useEffect(() => {
     if (city !== '' && search !== '') {
       setUrl(`${REQUEST_URL}current.json?key=${API_KEY}&q=${city}`)
-      setUrlDays(
-        `${REQUEST_URL}forecast.json?key=${API_KEY}&q=${city}&days=3&aqi=no&alerts=no`
-      )
+      setUrlDays(`${REQUEST_URL}forecast.json?key=${API_KEY}&q=${city}&days=3`)
       setSearchUrl(`${REQUEST_URL}search.json?key=${API_KEY}&q=${search}`)
     }
   }, [search, city])

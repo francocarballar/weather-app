@@ -44,16 +44,7 @@ function App () {
       api(url)
       forecast(urlDays)
     }
-  }, [url, url])
-
-  // useEffect(() => {
-  //   if (errorGeolocation) {
-  //     setScrollLocked(true)
-  //     console.log(scrollLocked)
-  //   } else {
-  //     setScrollLocked(false)
-  //   }
-  // }, [errorGeolocation])
+  }, [url])
 
   const { day, date, month } = useDate()
   const Today = `${day}, ${date} ${month}`
