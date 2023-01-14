@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { useEffect, useContext } from 'react'
 import { Context } from '../context'
 
@@ -12,7 +11,6 @@ function configAPI () {
     setSearchUrl,
     setUrlDays,
     setErrorGeolocation,
-    loading,
     setLoading
   } = useContext(Context)
 
@@ -20,17 +18,13 @@ function configAPI () {
     navigator.permissions
       .query({ name: 'geolocation' })
       .then(permissionStatus => {
-        if (permissionStatus.state === 'granted' && city !== '') {
-          setLoading(false)
-        } else if (permissionStatus.state === 'prompt') {
+        if (permissionStatus.state === 'prompt') {
           setLoading(true)
         } else if (permissionStatus.state === 'denied') {
           setLoading(true)
         }
         permissionStatus.onchange = function () {
-          if (permissionStatus.state === 'granted' && city !== '') {
-            setLoading(false)
-          } else if (permissionStatus.state === 'prompt') {
+          if (permissionStatus.state === 'prompt') {
             setLoading(true)
           } else if (permissionStatus.state === 'denied') {
             setLoading(true)
@@ -43,31 +37,29 @@ function configAPI () {
   const REQUEST_URL = 'https://api.weatherapi.com/v1/'
   useEffect(() => {
     if ('geolocation' in navigator) {
-      permissionStatus()
-      window.onload = () => {
-        function success (position) {
-          const lat = position.coords.latitude
-          const long = position.coords.longitude
-          if (city === '') {
-            setCity(`${lat},${long}`)
-            setMyCity(`${lat},${long}`)
-            setUrl(`${REQUEST_URL}current.json?key=${API_KEY}&q=${lat},${long}`)
-            setSearchUrl(
-              `${REQUEST_URL}search.json?key=${API_KEY}&q=${lat},${long}`
-            )
-            setUrlDays(
-              `${REQUEST_URL}forecast.json?key=${API_KEY}&q=${lat},${long}&days=3`
-            )
-          }
+      const success = position => {
+        const lat = position.coords.latitude
+        const long = position.coords.longitude
+        if (city === '') {
+          setCity(`${lat},${long}`)
+          setMyCity(`${lat},${long}`)
+          setUrl(`${REQUEST_URL}current.json?key=${API_KEY}&q=${lat},${long}`)
+          setSearchUrl(
+            `${REQUEST_URL}search.json?key=${API_KEY}&q=${lat},${long}`
+          )
+          setUrlDays(
+            `${REQUEST_URL}forecast.json?key=${API_KEY}&q=${lat},${long}&days=3`
+          )
+          permissionStatus()
         }
-
-        function error () {
-          setErrorGeolocation(true)
-        }
-
-        navigator.geolocation.watchPosition(success, error)
-        navigator.geolocation.getCurrentPosition(success, error)
       }
+
+      const error = () => {
+        setErrorGeolocation(true)
+      }
+
+      navigator.geolocation.watchPosition(success, error)
+      navigator.geolocation.getCurrentPosition(success, error)
     } else {
       if (city === '') {
         setUrl(`${REQUEST_URL}current.json?key=${API_KEY}&q=auto:ip`)

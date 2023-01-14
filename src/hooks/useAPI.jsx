@@ -23,13 +23,15 @@ function useAPI () {
     setMaxTempDay3,
     setMinTempDay3,
     setConditionText3,
-    setConditionIcon3
+    setConditionIcon3,
+    setLoading
   } = useContext(Context)
 
   const api = async url => {
     await fetch(url)
       .then(res => res.json())
       .then(data => {
+        console.log('Llamada a la API: ', data)
         setTemperature(data.current.temp_c)
         setLocation(data.location.name)
         setHumidity(data.current.humidity)
@@ -38,6 +40,7 @@ function useAPI () {
         setVisibility(data.current.vis_miles)
         setConditionText(data.current.condition.text)
         useSwitchConditionIcon(data.current.condition.text, setConditionIcon)
+        setLoading(false)
       })
       .catch(e => console.error(e))
   }
