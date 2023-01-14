@@ -59,7 +59,6 @@ function configAPI () {
         setErrorGeolocation(true)
       }
 
-      navigator.geolocation.watchPosition(success, error)
       navigator.geolocation.getCurrentPosition(success, error)
     } else {
       if (city === '') {
@@ -70,14 +69,12 @@ function configAPI () {
         )
       }
     }
-  }, [])
-  useEffect(() => {
     if (city !== '' && search !== '') {
       setUrl(`${REQUEST_URL}current.json?key=${API_KEY}&q=${city}`)
       setUrlDays(`${REQUEST_URL}forecast.json?key=${API_KEY}&q=${city}&days=3`)
       setSearchUrl(`${REQUEST_URL}search.json?key=${API_KEY}&q=${search}`)
     }
-  }, [search, city])
+  }, [city, search])
 }
 
 export { configAPI }
